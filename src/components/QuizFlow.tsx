@@ -208,7 +208,7 @@ function IntroScreen({ onStart }: { onStart: () => void }) {
 
         {/* Mascot */}
         <div className="z-10 flex items-center justify-center">
-          <PizzaMascot width={240} className="drop-shadow-lg" />
+          <PizzaMascot width={360} className="drop-shadow-lg" />
         </div>
       </div>
 
