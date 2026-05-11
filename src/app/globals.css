@@ -1,60 +1,129 @@
 @import "tailwindcss";
 
 @theme {
-  --color-bnb: #F0B90B;
-  --color-background: #0B0E11;
-  --color-foreground: #FFFFFF;
+  /* Brand colours */
+  --color-bnb:    #F0B90B;
+  --color-bnb-2:  #F8D12F;
+  --color-ink:    #1A1A1A;
+  --color-cream:  #F4ECD8;
+  --color-tomato: #D6453D;
+
+  --color-background: #F0B90B;
+  --color-foreground: #1A1A1A;
+
+  /* Font families — wired to CSS vars set in layout */
+  --font-display: var(--font-alfa-slab);
+  --font-sub:     var(--font-bungee);
+  --font-body:    var(--font-dm-sans);
 }
 
+/* CSS custom properties for arbitrary-value usage */
 :root {
-  --background: #0B0E11;
-  --foreground: #FFFFFF;
+  --bnb-yellow:   #F0B90B;
+  --bnb-yellow-2: #F8D12F;
+  --ink:          #1A1A1A;
+  --cream:        #F4ECD8;
+  --tomato:       #D6453D;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bnb-yellow);
+  color: var(--ink);
+  font-family: var(--font-dm-sans), system-ui, -apple-system, sans-serif;
   -webkit-font-smoothing: antialiased;
 }
 
-/* Gold holographic shimmer */
-@keyframes holo-shift {
-  0% {
-    background-position: 0% 50%;
-    opacity: 0.25;
-  }
-  50% {
-    background-position: 100% 50%;
-    opacity: 0.45;
-  }
-  100% {
-    background-position: 0% 50%;
-    opacity: 0.25;
-  }
+* { box-sizing: border-box; }
+
+/* ─── Checkerboard background utility ─── */
+.checker-bg {
+  background-color: var(--bnb-yellow);
+  background-image:
+    linear-gradient(45deg, var(--ink) 25%, transparent 25%),
+    linear-gradient(-45deg, var(--ink) 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, var(--ink) 75%),
+    linear-gradient(-45deg, transparent 75%, var(--ink) 75%);
+  background-size: 24px 24px;
+  background-position: 0 0, 0 12px, 12px -12px, -12px 0px;
+}
+
+/* ─── Hard-shadow button (retro press) ─── */
+.btn-retro {
+  border: 3px solid var(--ink);
+  box-shadow: 5px 5px 0 var(--ink);
+  transition: transform 80ms ease, box-shadow 80ms ease;
+  cursor: pointer;
+}
+.btn-retro:hover {
+  transform: translate(2px, 2px);
+  box-shadow: 3px 3px 0 var(--ink);
+}
+.btn-retro:active {
+  transform: translate(5px, 5px);
+  box-shadow: 0px 0px 0 var(--ink);
+}
+.btn-retro:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: 5px 5px 0 var(--ink);
+}
+
+/* ─── Hard-shadow card ─── */
+.card-retro {
+  border: 3px solid var(--ink);
+  box-shadow: 6px 6px 0 var(--ink);
+}
+
+/* ─── Rarity treatments (updated retro) ─── */
+@keyframes retro-silver {
+  0%   { background-position: -200% 0; }
+  100% { background-position:  200% 0; }
+}
+@keyframes retro-gold {
+  0%   { background-position: 0%   50%; opacity: 0.35; }
+  50%  { background-position: 100% 50%; opacity: 0.6;  }
+  100% { background-position: 0%   50%; opacity: 0.35; }
 }
 
 .holo-shimmer {
   background: linear-gradient(
-    135deg,
+    110deg,
     transparent 20%,
-    rgba(255, 217, 61, 0.3) 35%,
-    rgba(240, 185, 11, 0.5) 50%,
-    rgba(255, 149, 0, 0.3) 65%,
+    rgba(255,220,50,0.55) 38%,
+    rgba(240,185,11,0.7)  50%,
+    rgba(255,149,0,0.55)  62%,
     transparent 80%
   );
-  background-size: 200% 200%;
-  animation: holo-shift 3s ease-in-out infinite;
+  background-size: 220% 220%;
+  animation: retro-gold 3s ease-in-out infinite;
   mix-blend-mode: screen;
 }
 
-/* Silver shimmer */
-@keyframes silver-shift {
-  0% { background-position: -200% 0; }
-  100% { background-position: 200% 0; }
+/* ─── Pizza Rain ─── */
+@keyframes pizza-fall {
+  from {
+    transform: translate3d(0, -12vh, 0) rotate(var(--rot-start, 0deg));
+    opacity: 1;
+  }
+  to {
+    transform: translate3d(0, 112vh, 0) rotate(var(--rot-end, 360deg));
+    opacity: 0.85;
+  }
 }
 
-/* Subtle scroll */
-* {
-  box-sizing: border-box;
+.pizza-piece {
+  position: fixed;
+  pointer-events: none;
+  will-change: transform;
+  animation: pizza-fall var(--fall-dur, 10s) linear var(--fall-delay, 0s) infinite;
+  top: 0;
+  font-size: var(--pizza-size, 2rem);
+  left: var(--pizza-left, 50%);
+}
+
+/* ─── Confetti burst ─── */
+@keyframes confetti-fly {
+  from { opacity: 1; transform: translate(0,0) rotate(0deg) scale(1); }
+  to   { opacity: 0; transform: translate(var(--cx), var(--cy)) rotate(540deg) scale(0.4); }
 }

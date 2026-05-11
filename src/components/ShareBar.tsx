@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef, useCallback } from 'react';
+import { useCallback } from 'react';
 import { toPng } from 'html-to-image';
 import { buildCaption } from '@/lib/captions';
 import type { Flavour } from '@/lib/flavours';
@@ -12,8 +12,7 @@ interface Props {
   onToast?: (t: Toast) => void;
 }
 
-const APP_URL =
-  process.env.NEXT_PUBLIC_APP_URL ?? 'https://pizza.bnbchain.org';
+const APP_URL = process.env.NEXT_PUBLIC_APP_URL ?? 'https://pizza.bnbchain.org';
 
 export default function ShareBar({ flavour, cardRef, onToast }: Props) {
   const caption = buildCaption(flavour.name, flavour.id, flavour.emoji, APP_URL);
@@ -25,9 +24,7 @@ export default function ShareBar({ flavour, cardRef, onToast }: Props) {
       const res = await fetch(dataUrl);
       const blob = await res.blob();
       return new File([blob], `${flavour.id}-pizza-card.png`, { type: 'image/png' });
-    } catch {
-      return null;
-    }
+    } catch { return null; }
   }, [cardRef, flavour.id]);
 
   const downloadPng = useCallback(async () => {
@@ -35,77 +32,55 @@ export default function ShareBar({ flavour, cardRef, onToast }: Props) {
     if (!file) return;
     const url = URL.createObjectURL(file);
     const a = document.createElement('a');
-    a.href = url;
-    a.download = file.name;
-    a.click();
+    a.href = url; a.download = file.name; a.click();
     URL.revokeObjectURL(url);
   }, [generatePng]);
 
   const handleShare = useCallback(async () => {
     const file = await generatePng();
     if (!file) return;
-
     if (navigator.canShare && navigator.canShare({ files: [file] })) {
-      try {
-        await navigator.share({ files: [file], text: caption, url: APP_URL });
-        return;
-      } catch {
-        // fall through to desktop path
-      }
+      try { await navigator.share({ files: [file], text: caption, url: APP_URL }); return; }
+      catch {}
     }
-
-    // Desktop: download + open Twitter intent
     const url = URL.createObjectURL(file);
     const a = document.createElement('a');
-    a.href = url;
-    a.download = file.name;
-    a.click();
+    a.href = url; a.download = file.name; a.click();
     URL.revokeObjectURL(url);
-
-    const tweetUrl =
-      'https://twitter.com/intent/tweet?text=' +
-      encodeURIComponent(caption) +
-      '&url=' +
-      encodeURIComponent(APP_URL);
-    window.open(tweetUrl, '_blank', 'noopener');
-
-    onToast?.({
-      id: `share-${Date.now()}`,
-      type: 'info',
-      title: 'Card downloaded',
-      subtitle: 'Attach it to your tweet!',
-    });
+    window.open(
+      'https://twitter.com/intent/tweet?text=' + encodeURIComponent(caption) + '&url=' + encodeURIComponent(APP_URL),
+      '_blank', 'noopener'
+    );
+    onToast?.({ id: `share-${Date.now()}`, type: 'info', title: 'Card downloaded', subtitle: 'Attach it to your tweet!' });
   }, [generatePng, caption, onToast]);
 
-  const handleCopyCaption = useCallback(() => {
+  const handleCopy = useCallback(() => {
     navigator.clipboard.writeText(caption);
-    onToast?.({
-      id: `copy-${Date.now()}`,
-      type: 'success',
-      title: 'Caption copied!',
-    });
+    onToast?.({ id: `copy-${Date.now()}`, type: 'success', title: 'Caption copied!' });
   }, [caption, onToast]);
 
   return (
     <div className="flex flex-wrap gap-2 justify-center">
       <button
         onClick={handleShare}
-        className="flex items-center gap-2 bg-[#F0B90B] hover:bg-[#FFD93D] text-black font-bold px-4 py-2.5 rounded-lg transition-colors text-sm"
+        className="btn-retro bg-ink text-bnb font-black px-4 py-2.5 text-sm uppercase flex items-center gap-2"
+        style={{ fontFamily: 'var(--font-bungee)', borderRadius: 4 }}
       >
-        <span>𝕏</span>
-        Share on X
+        𝕏 Share on X
       </button>
       <button
         onClick={downloadPng}
-        className="flex items-center gap-2 bg-[#1a1f27] hover:bg-[#2B3139] text-white font-semibold px-4 py-2.5 rounded-lg border border-[#2B3139] transition-colors text-sm"
+        className="btn-retro bg-cream text-ink font-bold px-4 py-2.5 text-sm uppercase"
+        style={{ fontFamily: 'var(--font-bungee)', borderRadius: 4 }}
       >
-        ⬇ Download card
+        ⬇ Download
       </button>
       <button
-        onClick={handleCopyCaption}
-        className="flex items-center gap-2 bg-[#1a1f27] hover:bg-[#2B3139] text-white font-semibold px-4 py-2.5 rounded-lg border border-[#2B3139] transition-colors text-sm"
+        onClick={handleCopy}
+        className="btn-retro bg-cream text-ink font-bold px-4 py-2.5 text-sm uppercase"
+        style={{ fontFamily: 'var(--font-bungee)', borderRadius: 4 }}
       >
-        📋 Copy caption
+        📋 Copy Caption
       </button>
     </div>
   );

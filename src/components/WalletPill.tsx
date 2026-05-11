@@ -28,26 +28,30 @@ export default function WalletPill() {
     <div ref={ref} className="relative">
       <button
         onClick={() => setOpen((v) => !v)}
-        className="flex items-center gap-2 bg-[#1a1f27] border border-[#2B3139] rounded-full px-3 py-2 text-sm text-white hover:border-[#F0B90B]/50 transition-colors"
+        className="btn-retro flex items-center gap-2 bg-ink text-bnb px-3 py-1.5 text-xs uppercase"
+        style={{ fontFamily: 'var(--font-bungee)', borderRadius: 4 }}
       >
         <span className="w-2 h-2 rounded-full bg-green-400 shrink-0" />
-        <span className="font-mono text-xs">{shortenAddress(address)}</span>
-        <span className="bg-[#F0B90B] text-black text-xs font-bold px-1.5 py-0.5 rounded-sm">
-          BSC
-        </span>
+        <span className="font-mono">{shortenAddress(address)}</span>
+        <span className="bg-bnb text-ink font-black text-[10px] px-1.5 py-0.5 rounded-sm">BSC</span>
       </button>
+
       {open && (
-        <div className="absolute right-0 top-full mt-2 w-44 bg-[#1a1f27] border border-[#2B3139] rounded-lg shadow-xl z-50 overflow-hidden">
+        <div
+          className="absolute right-0 top-full mt-2 w-44 bg-cream border-3 border-ink overflow-hidden"
+          style={{ border: '3px solid #1A1A1A', boxShadow: '4px 4px 0 #1A1A1A', borderRadius: 4 }}
+        >
           <button
             onClick={handleCopy}
-            className="w-full text-left px-4 py-3 text-sm text-[#EAECEF] hover:bg-[#2B3139] transition-colors"
+            className="w-full text-left px-4 py-3 text-sm text-ink hover:bg-bnb transition-colors border-b-2 border-ink"
+            style={{ fontFamily: 'var(--font-dm-sans)' }}
           >
             Copy address
           </button>
-          <div className="border-t border-[#2B3139]" />
           <button
             onClick={() => { disconnect(); setOpen(false); }}
-            className="w-full text-left px-4 py-3 text-sm text-red-400 hover:bg-[#2B3139] transition-colors"
+            className="w-full text-left px-4 py-3 text-sm text-tomato hover:bg-bnb transition-colors font-bold"
+            style={{ fontFamily: 'var(--font-dm-sans)' }}
           >
             Disconnect
           </button>

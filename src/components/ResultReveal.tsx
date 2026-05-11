@@ -5,6 +5,9 @@ import { motion } from 'framer-motion';
 import CollectorCard from './CollectorCard';
 import ShareBar from './ShareBar';
 import MintFlow from './MintFlow';
+import CheckerBand from './ui/CheckerBand';
+import Sparkle, { SparkleCluster } from './ui/Sparkle';
+import Starburst from './ui/Starburst';
 import type { Flavour } from '@/lib/flavours';
 import type { Rarity } from '@/lib/rarity';
 import type { Toast } from './TxToast';
@@ -30,46 +33,73 @@ export default function ResultReveal({
 }: Props) {
   const cardRef = useRef<HTMLDivElement>(null);
   const [resultState, setResultState] = useState<ResultState>('idle');
-  const [mintTxHash, setMintTxHash] = useState<string | null>(null);
   const [mintTokenId, setMintTokenId] = useState<number | null>(null);
 
   const handleMintClick = useCallback(() => {
-    if (!isConnected) {
-      onConnectNeeded();
-      return;
-    }
+    if (!isConnected) { onConnectNeeded(); return; }
     setResultState('minting');
   }, [isConnected, onConnectNeeded]);
 
-  const handleMinted = useCallback((txHash: string, tokenId: number) => {
-    setMintTxHash(txHash);
+  const handleMinted = useCallback((_txHash: string, tokenId: number) => {
     setMintTokenId(tokenId);
     setResultState('minted');
   }, []);
+
+  const isMintDone = resultState === 'minted';
 
   return (
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      className="w-full max-w-4xl mx-auto"
+      className="flex-1 flex flex-col bg-cream"
     >
-      <div className="text-center mb-6">
-        <p className="text-[#848E9C] text-sm uppercase tracking-widest mb-2">Your flavour is</p>
-        <h2 className="text-3xl md:text-5xl font-black text-white mb-1">
+      <CheckerBand height={24} />
+
+      {/* Result headline */}
+      <div className="py-6 px-4 text-center border-b-4 border-ink bg-cream relative">
+        <SparkleCluster count={6} />
+        <p
+          className="text-ink/60 text-xs uppercase tracking-[0.3em] mb-1"
+          style={{ fontFamily: 'var(--font-bungee)' }}
+        >
+          Your flavour is
+        </p>
+        <h2
+          className="text-ink uppercase leading-tight"
+          style={{ fontFamily: 'var(--font-alfa-slab)', fontSize: 'clamp(2rem, 8vw, 3.5rem)' }}
+        >
           {flavour.name} {flavour.emoji}
         </h2>
-        <p className="text-[#EAECEF] text-lg" style={{ color: flavour.accentColor }}>
+        <p
+          className="text-ink/70 mt-1 uppercase tracking-widest text-sm"
+          style={{ fontFamily: 'var(--font-bungee)', color: flavour.accentColor, WebkitTextStroke: '0.5px #1A1A1A' }}
+        >
           {flavour.tagline}
         </p>
+
+        {/* Rarity callout starburst */}
+        {rarity !== 'normal' && (
+          <div className="absolute top-4 right-4">
+            <Starburst
+              size={72}
+              bg={rarity === 'gold' ? '#F0B90B' : '#1A1A1A'}
+              textColor={rarity === 'gold' ? '#1A1A1A' : '#C0C0C0'}
+              rotate={12}
+            >
+              {rarity === 'gold' ? '✦ HOLO ✦' : 'SILVER!'}
+            </Starburst>
+          </div>
+        )}
       </div>
 
-      <div className={`flex flex-col ${resultState === 'minting' || resultState === 'minted' ? 'md:flex-row' : ''} items-start justify-center gap-8`}>
-        {/* Card */}
-        <div className="flex flex-col items-center gap-6 mx-auto">
+      {/* Card + controls */}
+      <div className="flex-1 flex flex-col md:flex-row items-start justify-center gap-8 px-4 py-8">
+        {/* Card column */}
+        <div className="flex flex-col items-center gap-5 mx-auto">
           <motion.div
-            initial={{ rotateY: 90, scale: 0.8 }}
+            initial={{ rotateY: 90, scale: 0.85 }}
             animate={{ rotateY: 0, scale: 1 }}
-            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
             style={{ perspective: 1000 }}
           >
             <CollectorCard
@@ -80,38 +110,38 @@ export default function ResultReveal({
             />
           </motion.div>
 
-          {/* Share bar — always shown */}
           <ShareBar flavour={flavour} cardRef={cardRef} onToast={onToast} />
 
-          {/* Mint CTA / status */}
           {resultState === 'idle' && (
-            <div className="flex flex-col items-center gap-3">
+            <div className="flex flex-col items-center gap-3 w-full">
               <button
                 onClick={handleMintClick}
-                className="bg-[#F0B90B] hover:bg-[#FFD93D] text-black font-black text-lg px-8 py-3.5 rounded-lg transition-colors"
+                className="btn-retro bg-ink text-bnb px-8 py-3.5 text-lg uppercase w-full max-w-xs"
+                style={{ fontFamily: 'var(--font-alfa-slab)' }}
               >
                 Mint to BNB Chain
               </button>
               <button
                 onClick={onReset}
-                className="text-[#848E9C] hover:text-white text-sm transition-colors underline underline-offset-2"
+                className="text-ink/50 hover:text-ink text-sm transition-colors underline underline-offset-2"
               >
                 Take it again
               </button>
             </div>
           )}
 
-          {resultState === 'minted' && (
-            <div className="flex flex-col items-center gap-3">
+          {isMintDone && (
+            <div className="flex flex-col items-center gap-3 w-full">
               <button
                 disabled
-                className="bg-[#2B3139] text-[#848E9C] font-black text-lg px-8 py-3.5 rounded-lg cursor-not-allowed"
+                className="btn-retro bg-ink/30 text-ink px-8 py-3.5 text-lg uppercase w-full max-w-xs cursor-not-allowed"
+                style={{ fontFamily: 'var(--font-alfa-slab)' }}
               >
                 Minted ✓
               </button>
               <button
                 onClick={onReset}
-                className="text-[#848E9C] hover:text-white text-sm transition-colors underline underline-offset-2"
+                className="text-ink/50 hover:text-ink text-sm transition-colors underline underline-offset-2"
               >
                 Take it again
               </button>
@@ -122,7 +152,7 @@ export default function ResultReveal({
         {/* Mint flow panel */}
         {(resultState === 'minting' || resultState === 'minted') && (
           <motion.div
-            initial={{ opacity: 0, x: 20 }}
+            initial={{ opacity: 0, x: 24 }}
             animate={{ opacity: 1, x: 0 }}
             className="w-full md:w-80 shrink-0"
           >
@@ -136,6 +166,8 @@ export default function ResultReveal({
           </motion.div>
         )}
       </div>
+
+      <CheckerBand height={24} />
     </motion.div>
   );
 }

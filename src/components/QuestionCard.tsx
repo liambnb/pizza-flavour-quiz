@@ -3,6 +3,8 @@
 import { motion } from 'framer-motion';
 import { cn } from '@/lib/utils';
 import type { Question } from '@/lib/questions';
+import CheckerBand from './ui/CheckerBand';
+import Sparkle from './ui/Sparkle';
 
 interface Props {
   question: Question;
@@ -12,56 +14,92 @@ interface Props {
 }
 
 export default function QuestionCard({ question, questionNumber, total, onAnswer }: Props) {
-  const progress = ((questionNumber - 1) / total) * 100;
-
   return (
     <motion.div
       key={question.id}
       initial={{ opacity: 0, x: 40 }}
       animate={{ opacity: 1, x: 0 }}
       exit={{ opacity: 0, x: -40 }}
-      transition={{ duration: 0.25 }}
-      className="w-full max-w-xl mx-auto"
+      transition={{ duration: 0.22 }}
+      className="flex-1 flex flex-col bg-bnb"
     >
-      {/* Progress bar */}
-      <div className="mb-8">
-        <div className="flex justify-between text-xs text-[#848E9C] mb-2">
-          <span>Question {questionNumber} of {total}</span>
-          <span>{questionNumber - 1}/{total} complete</span>
-        </div>
-        <div className="h-1 bg-[#2B3139] rounded-full overflow-hidden">
-          <motion.div
-            className="h-full bg-[#F0B90B] rounded-full"
-            initial={{ width: `${((questionNumber - 2) / total) * 100}%` }}
-            animate={{ width: `${progress}%` }}
-            transition={{ duration: 0.4 }}
-          />
-        </div>
-      </div>
-
-      <h2 className="text-2xl md:text-3xl font-bold text-white mb-8 leading-tight">
-        {question.text}
-      </h2>
-
-      <div className="flex flex-col gap-3">
-        {question.answers.map((answer, i) => (
-          <motion.button
-            key={answer.id}
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: i * 0.07 }}
-            onClick={() => onAnswer(answer.id)}
-            className={cn(
-              'w-full text-left px-5 py-4 rounded-lg border text-white font-medium',
-              'border-[#2B3139] bg-[#12161c]',
-              'hover:border-[#F0B90B] hover:bg-[#F0B90B]/5 transition-all duration-150',
-              'focus:outline-none focus:border-[#F0B90B]'
-            )}
+      {/* Progress header */}
+      <div className="shrink-0">
+        <CheckerBand height={24} />
+        <div className="flex items-center justify-between px-6 py-3 border-b-4 border-ink">
+          <span
+            className="text-ink uppercase tracking-widest text-xs"
+            style={{ fontFamily: 'var(--font-bungee)' }}
           >
-            {answer.text}
-          </motion.button>
-        ))}
+            Question
+          </span>
+          <div className="flex items-center gap-2">
+            <Sparkle size={10} />
+            <span
+              className="text-ink text-2xl"
+              style={{ fontFamily: 'var(--font-alfa-slab)' }}
+            >
+              {String(questionNumber).padStart(2, '0')}
+              <span className="text-ink/40 text-lg"> / {String(total).padStart(2, '0')}</span>
+            </span>
+            <Sparkle size={10} />
+          </div>
+          {/* Progress dots */}
+          <div className="flex gap-1.5">
+            {Array.from({ length: total }).map((_, i) => (
+              <div
+                key={i}
+                className={cn(
+                  'w-3 h-3 rounded-full border-2 border-ink',
+                  i < questionNumber ? 'bg-ink' : 'bg-bnb'
+                )}
+              />
+            ))}
+          </div>
+        </div>
       </div>
+
+      {/* Question body */}
+      <div className="flex-1 flex flex-col items-center justify-center px-4 py-8 max-w-xl mx-auto w-full">
+        {/* Small mascot corner decoration */}
+        <div className="self-end mb-4 opacity-60">
+          <span className="text-3xl">🍕</span>
+        </div>
+
+        <h2
+          className="text-ink text-center mb-8 leading-tight"
+          style={{
+            fontFamily: 'var(--font-bungee)',
+            fontSize: 'clamp(1.25rem, 4vw, 1.75rem)',
+          }}
+        >
+          {question.text}
+        </h2>
+
+        <div className="flex flex-col gap-3 w-full">
+          {question.answers.map((answer, i) => (
+            <motion.button
+              key={answer.id}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: i * 0.07 }}
+              onClick={() => onAnswer(answer.id)}
+              className={cn(
+                'w-full text-left px-5 py-4 rounded-sm',
+                'bg-cream text-ink font-semibold',
+                'btn-retro',
+                'text-sm md:text-base',
+                'hover:bg-bnb-2'
+              )}
+              style={{ fontFamily: 'var(--font-dm-sans)' }}
+            >
+              {answer.text}
+            </motion.button>
+          ))}
+        </div>
+      </div>
+
+      <CheckerBand height={24} />
     </motion.div>
   );
 }
