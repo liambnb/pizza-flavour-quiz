@@ -165,7 +165,7 @@ function IntroScreen({ onStart }: { onStart: () => void }) {
         <div className="flex flex-col items-center lg:items-start text-center lg:text-left max-w-lg z-10">
           <p
             className="text-ink text-sm uppercase tracking-[0.3em] mb-2"
-            style={{ fontFamily: 'var(--font-display-2)' }}
+            style={{ fontFamily: 'var(--font-body)', fontWeight: 700 }}
           >
             Happy Bitcoin Pizza Day
           </p>
@@ -176,6 +176,7 @@ function IntroScreen({ onStart }: { onStart: () => void }) {
               fontFamily: 'var(--font-display)',
               fontSize: 'clamp(3rem, 10vw, 6rem)',
               letterSpacing: '-0.01em',
+              fontWeight: 900,
             }}
           >
             What
@@ -187,7 +188,7 @@ function IntroScreen({ onStart }: { onStart: () => void }) {
 
           <p
             className="text-ink text-base mb-8 max-w-xs"
-            style={{ fontFamily: 'var(--font-display-2)', fontSize: '0.9rem' }}
+            style={{ fontFamily: 'var(--font-body)', fontWeight: 700, fontSize: '0.9rem' }}
           >
             Take the quiz. Get your card. Mint the slice.
           </p>
