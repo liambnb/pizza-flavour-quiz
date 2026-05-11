@@ -101,25 +101,31 @@ body {
 }
 
 /* ─── Pizza Rain ─── */
+/* Outer wrapper: vertical drop only — no custom-property in the transform */
 @keyframes pizza-fall {
-  from {
-    transform: translate3d(0, -12vh, 0) rotate(var(--rot-start, 0deg));
-    opacity: 1;
-  }
-  to {
-    transform: translate3d(0, 112vh, 0) rotate(var(--rot-end, 360deg));
-    opacity: 0.85;
-  }
+  from { transform: translateY(-12vh); }
+  to   { transform: translateY(112vh); }
 }
 
-.pizza-piece {
+/* Inner span: rotation only */
+@keyframes pizza-spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+.pizza-wrapper {
   position: fixed;
+  top: 0;
   pointer-events: none;
   will-change: transform;
   animation: pizza-fall var(--fall-dur, 10s) linear var(--fall-delay, 0s) infinite;
-  top: 0;
+}
+
+.pizza-piece {
+  display: block;
   font-size: var(--pizza-size, 2rem);
-  left: var(--pizza-left, 50%);
+  will-change: transform;
+  animation: pizza-spin var(--spin-dur, 4s) linear var(--fall-delay, 0s) infinite;
 }
 
 /* ─── Confetti burst ─── */
