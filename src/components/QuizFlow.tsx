@@ -158,57 +158,59 @@ function IntroScreen({ onStart }: { onStart: () => void }) {
       <CheckerBand height={24} />
 
       {/* Hero */}
-      <div className="flex-1 flex flex-col lg:flex-row items-center justify-center gap-8 px-6 py-10 relative overflow-hidden">
+      <div className="flex-1 flex items-center justify-center px-8 lg:px-16 py-12 relative overflow-hidden">
         <SparkleCluster count={8} />
 
-        {/* Text side */}
-        <div className="flex flex-col items-center lg:items-start text-center lg:text-left max-w-lg z-10">
-          <p
-            className="text-ink text-sm uppercase tracking-[0.3em] mb-2"
-            style={{ fontFamily: 'var(--font-body)', fontWeight: 700 }}
-          >
-            Happy Bitcoin Pizza Day
-          </p>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center max-w-7xl w-full">
+          {/* Left column — text + button */}
+          <div className="flex flex-col items-start text-left gap-6 order-2 lg:order-1 z-10">
+            <p
+              className="text-ink text-sm uppercase tracking-[0.3em]"
+              style={{ fontFamily: 'var(--font-body)', fontWeight: 700 }}
+            >
+              Happy Bitcoin Pizza Day
+            </p>
 
-          <h1
-            className="text-ink leading-none mb-4 uppercase"
-            style={{
-              fontFamily: 'var(--font-display)',
-              fontSize: 'clamp(3rem, 10vw, 6rem)',
-              letterSpacing: '-0.01em',
-              fontWeight: 900,
-            }}
-          >
-            What
-            <br />
-            Slice
-            <br />
-            Are You?
-          </h1>
+            <h1
+              className="text-ink leading-none uppercase"
+              style={{
+                fontFamily: 'var(--font-display)',
+                fontSize: 'clamp(3rem, 10vw, 6rem)',
+                letterSpacing: '-0.01em',
+                fontWeight: 900,
+              }}
+            >
+              What
+              <br />
+              Slice
+              <br />
+              Are You?
+            </h1>
 
-          <p
-            className="text-ink text-base mb-8 max-w-xs"
-            style={{ fontFamily: 'var(--font-body)', fontWeight: 700, fontSize: '0.9rem' }}
-          >
-            Take the quiz. Get your card. Mint the slice.
-          </p>
+            <p
+              className="text-ink text-base"
+              style={{ fontFamily: 'var(--font-body)', fontWeight: 700, fontSize: '0.9rem' }}
+            >
+              Take the quiz. Get your card. Mint the slice.
+            </p>
 
-          <button
-            onClick={onStart}
-            className="btn-retro bg-ink text-bnb px-8 py-4 text-xl uppercase rounded-sm"
-            style={{ fontFamily: 'var(--font-display)' }}
-          >
-            Start the Slice Test
-          </button>
+            <button
+              onClick={onStart}
+              className="btn-retro bg-ink text-bnb px-8 py-4 text-xl uppercase rounded-sm"
+              style={{ fontFamily: 'var(--font-display)' }}
+            >
+              Start the Slice Test
+            </button>
 
-          <p className="text-ink/60 text-xs mt-4 uppercase tracking-widest">
-            5 questions · 10+ possible flavours
-          </p>
-        </div>
+            <p className="text-ink/60 text-xs uppercase tracking-widest">
+              5 questions · 10+ possible flavours
+            </p>
+          </div>
 
-        {/* Mascot */}
-        <div className="z-10 flex items-center justify-center">
-          <PizzaMascot width={360} className="drop-shadow-lg" />
+          {/* Right column — mascot */}
+          <div className="flex items-center justify-center order-1 lg:order-2 z-10">
+            <PizzaMascot width={900} className="w-72 lg:w-96 xl:w-[28rem] h-auto drop-shadow-lg" />
+          </div>
         </div>
       </div>
 

@@ -12,7 +12,7 @@ export default function PizzaRainToggle() {
       disabled={reducedMotion}
       title={reducedMotion ? 'Disabled — prefers-reduced-motion is on' : undefined}
       className={cn(
-        'fixed bottom-4 left-4 z-40',
+        'fixed bottom-10 left-4 z-40',
         'font-display-2 text-[11px] uppercase tracking-wider px-3 py-2 rounded',
         'btn-retro select-none',
         enabled
@@ -22,7 +22,7 @@ export default function PizzaRainToggle() {
       )}
       style={{ fontFamily: 'var(--font-display-2)' }}
     >
-      {reducedMotion ? 'PIZZA RAIN: DISABLED' : enabled ? 'PIZZA RAIN: ON 🍕' : 'PIZZA RAIN: OFF'}
+      {reducedMotion ? 'DISABLED' : enabled ? 'STOP THE RAIN 🍕' : 'MAKE IT RAIN 🍕'}
     </button>
   );
 }

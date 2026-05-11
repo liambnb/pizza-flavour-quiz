@@ -15,6 +15,7 @@ export default function PizzaMascot({ className, width = 220 }: Props) {
       width={width}
       height={height}
       className={className}
+      unoptimized
       priority
     />
   );
