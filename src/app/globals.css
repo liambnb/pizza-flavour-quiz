@@ -1,0 +1,60 @@
+@import "tailwindcss";
+
+@theme {
+  --color-bnb: #F0B90B;
+  --color-background: #0B0E11;
+  --color-foreground: #FFFFFF;
+}
+
+:root {
+  --background: #0B0E11;
+  --foreground: #FFFFFF;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Gold holographic shimmer */
+@keyframes holo-shift {
+  0% {
+    background-position: 0% 50%;
+    opacity: 0.25;
+  }
+  50% {
+    background-position: 100% 50%;
+    opacity: 0.45;
+  }
+  100% {
+    background-position: 0% 50%;
+    opacity: 0.25;
+  }
+}
+
+.holo-shimmer {
+  background: linear-gradient(
+    135deg,
+    transparent 20%,
+    rgba(255, 217, 61, 0.3) 35%,
+    rgba(240, 185, 11, 0.5) 50%,
+    rgba(255, 149, 0, 0.3) 65%,
+    transparent 80%
+  );
+  background-size: 200% 200%;
+  animation: holo-shift 3s ease-in-out infinite;
+  mix-blend-mode: screen;
+}
+
+/* Silver shimmer */
+@keyframes silver-shift {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+/* Subtle scroll */
+* {
+  box-sizing: border-box;
+}
