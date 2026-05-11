@@ -60,19 +60,19 @@ export default function ResultReveal({
         <SparkleCluster count={6} />
         <p
           className="text-ink/60 text-xs uppercase tracking-[0.3em] mb-1"
-          style={{ fontFamily: 'var(--font-bungee)' }}
+          style={{ fontFamily: 'var(--font-display-2)' }}
         >
           Your flavour is
         </p>
         <h2
           className="text-ink uppercase leading-tight"
-          style={{ fontFamily: 'var(--font-alfa-slab)', fontSize: 'clamp(2rem, 8vw, 3.5rem)' }}
+          style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(2rem, 8vw, 3.5rem)' }}
         >
           {flavour.name} {flavour.emoji}
         </h2>
         <p
           className="text-ink/70 mt-1 uppercase tracking-widest text-sm"
-          style={{ fontFamily: 'var(--font-bungee)', color: flavour.accentColor, WebkitTextStroke: '0.5px #1A1A1A' }}
+          style={{ fontFamily: 'var(--font-display-2)', color: flavour.accentColor, WebkitTextStroke: '0.5px #1A1A1A' }}
         >
           {flavour.tagline}
         </p>
@@ -117,7 +117,7 @@ export default function ResultReveal({
               <button
                 onClick={handleMintClick}
                 className="btn-retro bg-ink text-bnb px-8 py-3.5 text-lg uppercase w-full max-w-xs"
-                style={{ fontFamily: 'var(--font-alfa-slab)' }}
+                style={{ fontFamily: 'var(--font-display)' }}
               >
                 Mint to BNB Chain
               </button>
@@ -135,7 +135,7 @@ export default function ResultReveal({
               <button
                 disabled
                 className="btn-retro bg-ink/30 text-ink px-8 py-3.5 text-lg uppercase w-full max-w-xs cursor-not-allowed"
-                style={{ fontFamily: 'var(--font-alfa-slab)' }}
+                style={{ fontFamily: 'var(--font-display)' }}
               >
                 Minted ✓
               </button>

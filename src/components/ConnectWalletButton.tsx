@@ -46,7 +46,7 @@ export default function ConnectWalletButton({ onToast, onConnected }: Props) {
       <button
         onClick={() => setOpen(true)}
         className="btn-retro bg-ink text-bnb font-black px-5 py-2 text-sm uppercase"
-        style={{ fontFamily: 'var(--font-alfa-slab)', borderRadius: 4 }}
+        style={{ fontFamily: 'var(--font-display)', borderRadius: 4 }}
       >
         Connect Wallet
       </button>
@@ -73,7 +73,7 @@ export default function ConnectWalletButton({ onToast, onConnected }: Props) {
               <div className="flex items-center justify-between px-5 pt-5 pb-3">
                 <h2
                   className="text-ink uppercase text-xl"
-                  style={{ fontFamily: 'var(--font-alfa-slab)' }}
+                  style={{ fontFamily: 'var(--font-display)' }}
                 >
                   Connect Wallet
                 </h2>
@@ -101,7 +101,7 @@ export default function ConnectWalletButton({ onToast, onConnected }: Props) {
                     <span className="text-2xl">{w.icon}</span>
                     <span
                       className="text-ink font-bold flex-1"
-                      style={{ fontFamily: 'var(--font-bungee)', fontSize: '0.9rem' }}
+                      style={{ fontFamily: 'var(--font-display-2)', fontSize: '0.9rem' }}
                     >
                       {w.name}
                     </span>
@@ -114,7 +114,7 @@ export default function ConnectWalletButton({ onToast, onConnected }: Props) {
                       </span>
                     )}
                     {connecting === w.id && (
-                      <span className="text-ink/60 text-xs animate-pulse" style={{ fontFamily: 'var(--font-bungee)' }}>
+                      <span className="text-ink/60 text-xs animate-pulse" style={{ fontFamily: 'var(--font-display-2)' }}>
                         Connecting…
                       </span>
                     )}
@@ -126,7 +126,7 @@ export default function ConnectWalletButton({ onToast, onConnected }: Props) {
                 <div className="px-5 pb-4 text-center">
                   <p
                     className="text-ink/60 text-sm animate-pulse"
-                    style={{ fontFamily: 'var(--font-bungee)' }}
+                    style={{ fontFamily: 'var(--font-display-2)' }}
                   >
                     Waiting for {MOCK_WALLETS.find((w) => w.id === connecting)?.name}…
                   </p>

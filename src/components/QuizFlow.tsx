@@ -74,7 +74,7 @@ export default function QuizFlow() {
   const currentQuestion = qIndex >= 0 ? QUESTIONS[qIndex] : null;
 
   return (
-    <div className="min-h-screen flex flex-col bg-bnb text-ink" style={{ fontFamily: 'var(--font-dm-sans)' }}>
+    <div className="min-h-screen flex flex-col bg-bnb text-ink" style={{ fontFamily: 'var(--font-body)' }}>
       {/* ── NAV ── */}
       <header className="flex items-center justify-between px-4 md:px-8 py-3 border-b-4 border-ink shrink-0 bg-bnb">
         <button
@@ -84,7 +84,7 @@ export default function QuizFlow() {
           <span className="text-2xl">🍕</span>
           <span
             className="text-ink font-display text-sm uppercase tracking-widest hidden sm:block group-hover:opacity-70 transition-opacity"
-            style={{ fontFamily: 'var(--font-alfa-slab)' }}
+            style={{ fontFamily: 'var(--font-display)' }}
           >
             BNB Pizza Day
           </span>
@@ -130,7 +130,7 @@ export default function QuizFlow() {
             <Sparkle size={12} />
             <span
               className="text-ink text-xs uppercase tracking-[0.2em]"
-              style={{ fontFamily: 'var(--font-alfa-slab)' }}
+              style={{ fontFamily: 'var(--font-display)' }}
             >
               Bitcoin Pizza Day · 2026 · From BNB Chain
             </span>
@@ -165,7 +165,7 @@ function IntroScreen({ onStart }: { onStart: () => void }) {
         <div className="flex flex-col items-center lg:items-start text-center lg:text-left max-w-lg z-10">
           <p
             className="text-ink text-sm uppercase tracking-[0.3em] mb-2"
-            style={{ fontFamily: 'var(--font-bungee)' }}
+            style={{ fontFamily: 'var(--font-display-2)' }}
           >
             Happy Bitcoin Pizza Day
           </p>
@@ -173,7 +173,7 @@ function IntroScreen({ onStart }: { onStart: () => void }) {
           <h1
             className="text-ink leading-none mb-4 uppercase"
             style={{
-              fontFamily: 'var(--font-alfa-slab)',
+              fontFamily: 'var(--font-display)',
               fontSize: 'clamp(3rem, 10vw, 6rem)',
               letterSpacing: '-0.01em',
             }}
@@ -187,7 +187,7 @@ function IntroScreen({ onStart }: { onStart: () => void }) {
 
           <p
             className="text-ink text-base mb-8 max-w-xs"
-            style={{ fontFamily: 'var(--font-bungee)', fontSize: '0.9rem' }}
+            style={{ fontFamily: 'var(--font-display-2)', fontSize: '0.9rem' }}
           >
             Take the quiz. Get your card. Mint the slice.
           </p>
@@ -195,7 +195,7 @@ function IntroScreen({ onStart }: { onStart: () => void }) {
           <button
             onClick={onStart}
             className="btn-retro bg-ink text-bnb px-8 py-4 text-xl uppercase rounded-sm"
-            style={{ fontFamily: 'var(--font-alfa-slab)' }}
+            style={{ fontFamily: 'var(--font-display)' }}
           >
             Start the Slice Test
           </button>
@@ -231,7 +231,7 @@ function IntroScreen({ onStart }: { onStart: () => void }) {
             >
               <span
                 className="text-bnb font-display text-2xl leading-none"
-                style={{ fontFamily: 'var(--font-alfa-slab)' }}
+                style={{ fontFamily: 'var(--font-display)' }}
               >
                 20
               </span>
@@ -244,7 +244,7 @@ function IntroScreen({ onStart }: { onStart: () => void }) {
             >
               <span
                 className="text-bnb font-display text-2xl leading-none"
-                style={{ fontFamily: 'var(--font-alfa-slab)' }}
+                style={{ fontFamily: 'var(--font-display)' }}
               >
                 26
               </span>
@@ -279,7 +279,7 @@ function RevealingScreen() {
         </motion.div>
         <p
           className="text-ink text-3xl uppercase"
-          style={{ fontFamily: 'var(--font-alfa-slab)' }}
+          style={{ fontFamily: 'var(--font-display)' }}
         >
           Slicing Your Card…
         </p>

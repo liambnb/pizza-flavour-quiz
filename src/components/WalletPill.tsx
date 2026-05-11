@@ -29,7 +29,7 @@ export default function WalletPill() {
       <button
         onClick={() => setOpen((v) => !v)}
         className="btn-retro flex items-center gap-2 bg-ink text-bnb px-3 py-1.5 text-xs uppercase"
-        style={{ fontFamily: 'var(--font-bungee)', borderRadius: 4 }}
+        style={{ fontFamily: 'var(--font-display-2)', borderRadius: 4 }}
       >
         <span className="w-2 h-2 rounded-full bg-green-400 shrink-0" />
         <span className="font-mono">{shortenAddress(address)}</span>
@@ -44,14 +44,14 @@ export default function WalletPill() {
           <button
             onClick={handleCopy}
             className="w-full text-left px-4 py-3 text-sm text-ink hover:bg-bnb transition-colors border-b-2 border-ink"
-            style={{ fontFamily: 'var(--font-dm-sans)' }}
+            style={{ fontFamily: 'var(--font-body)' }}
           >
             Copy address
           </button>
           <button
             onClick={() => { disconnect(); setOpen(false); }}
             className="w-full text-left px-4 py-3 text-sm text-tomato hover:bg-bnb transition-colors font-bold"
-            style={{ fontFamily: 'var(--font-dm-sans)' }}
+            style={{ fontFamily: 'var(--font-body)' }}
           >
             Disconnect
           </button>

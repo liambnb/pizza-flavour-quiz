@@ -12,9 +12,10 @@
   --color-foreground: #1A1A1A;
 
   /* Font families — wired to CSS vars set in layout */
-  --font-display: var(--font-alfa-slab);
-  --font-sub:     var(--font-bungee);
-  --font-body:    var(--font-dm-sans);
+  --font-display:   var(--font-kombin);
+  --font-display-2: var(--font-dyna-puff);
+  --font-sub:       var(--font-dyna-puff);
+  --font-body:      var(--font-space-grotesk);
 }
 
 /* CSS custom properties for arbitrary-value usage */
@@ -29,7 +30,7 @@
 body {
   background: var(--bnb-yellow);
   color: var(--ink);
-  font-family: var(--font-dm-sans), system-ui, -apple-system, sans-serif;
+  font-family: var(--font-space-grotesk), system-ui, -apple-system, sans-serif;
   -webkit-font-smoothing: antialiased;
 }
 

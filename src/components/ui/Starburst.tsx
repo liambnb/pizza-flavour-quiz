@@ -42,11 +42,11 @@ export default function Starburst({
         <polygon points={pts} fill={bg} stroke={bg} strokeWidth="1" />
       </svg>
       <span
-        className="relative z-10 font-sub text-center leading-tight px-1"
+        className="relative z-10 font-display-2 text-center leading-tight px-1"
         style={{
           color: textColor,
           fontSize: size * 0.18,
-          fontFamily: 'var(--font-bungee)',
+          fontFamily: 'var(--font-display-2)',
           maxWidth: size * 0.72,
         }}
       >

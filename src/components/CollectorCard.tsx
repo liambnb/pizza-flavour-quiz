@@ -56,7 +56,7 @@ const CollectorCard = forwardRef<HTMLDivElement, Props>(
         >
           <span
             className="text-ink uppercase leading-none text-sm md:text-base font-black truncate mr-2"
-            style={{ fontFamily: 'var(--font-alfa-slab, serif)' }}
+            style={{ fontFamily: 'var(--font-display, serif)' }}
           >
             {flavour.name}
           </span>
@@ -84,7 +84,7 @@ const CollectorCard = forwardRef<HTMLDivElement, Props>(
         >
           <p
             className="text-bnb uppercase tracking-widest leading-none"
-            style={{ fontFamily: 'var(--font-bungee, sans-serif)', fontSize: '0.65rem' }}
+            style={{ fontFamily: 'var(--font-display-2, sans-serif)', fontSize: '0.65rem' }}
           >
             {flavour.tagline}
           </p>
@@ -97,7 +97,7 @@ const CollectorCard = forwardRef<HTMLDivElement, Props>(
         >
           <p
             className="text-ink leading-snug"
-            style={{ fontFamily: 'var(--font-dm-sans, sans-serif)', fontSize: '0.65rem' }}
+            style={{ fontFamily: 'var(--font-body, sans-serif)', fontSize: '0.65rem' }}
           >
             {flavour.description}
           </p>
@@ -107,7 +107,7 @@ const CollectorCard = forwardRef<HTMLDivElement, Props>(
         <div className="shrink-0 px-3 pb-2 pt-0 flex items-center justify-between">
           <span
             className="text-ink/60 uppercase"
-            style={{ fontFamily: 'var(--font-alfa-slab, serif)', fontSize: '0.45rem', letterSpacing: '0.15em' }}
+            style={{ fontFamily: 'var(--font-display, serif)', fontSize: '0.45rem', letterSpacing: '0.15em' }}
           >
             Pizza Day · 2026 · BNB Chain
           </span>
@@ -115,7 +115,7 @@ const CollectorCard = forwardRef<HTMLDivElement, Props>(
             <span
               className="text-bnb uppercase"
               style={{
-                fontFamily: 'var(--font-alfa-slab, serif)',
+                fontFamily: 'var(--font-display, serif)',
                 fontSize: '0.45rem',
                 letterSpacing: '0.1em',
                 background: '#1A1A1A',

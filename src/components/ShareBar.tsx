@@ -64,21 +64,21 @@ export default function ShareBar({ flavour, cardRef, onToast }: Props) {
       <button
         onClick={handleShare}
         className="btn-retro bg-ink text-bnb font-black px-4 py-2.5 text-sm uppercase flex items-center gap-2"
-        style={{ fontFamily: 'var(--font-bungee)', borderRadius: 4 }}
+        style={{ fontFamily: 'var(--font-display-2)', borderRadius: 4 }}
       >
         𝕏 Share on X
       </button>
       <button
         onClick={downloadPng}
         className="btn-retro bg-cream text-ink font-bold px-4 py-2.5 text-sm uppercase"
-        style={{ fontFamily: 'var(--font-bungee)', borderRadius: 4 }}
+        style={{ fontFamily: 'var(--font-display-2)', borderRadius: 4 }}
       >
         ⬇ Download
       </button>
       <button
         onClick={handleCopy}
         className="btn-retro bg-cream text-ink font-bold px-4 py-2.5 text-sm uppercase"
-        style={{ fontFamily: 'var(--font-bungee)', borderRadius: 4 }}
+        style={{ fontFamily: 'var(--font-display-2)', borderRadius: 4 }}
       >
         📋 Copy Caption
       </button>

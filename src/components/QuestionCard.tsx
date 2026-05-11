@@ -29,7 +29,7 @@ export default function QuestionCard({ question, questionNumber, total, onAnswer
         <div className="flex items-center justify-between px-6 py-3 border-b-4 border-ink">
           <span
             className="text-ink uppercase tracking-widest text-xs"
-            style={{ fontFamily: 'var(--font-bungee)' }}
+            style={{ fontFamily: 'var(--font-display-2)' }}
           >
             Question
           </span>
@@ -37,7 +37,7 @@ export default function QuestionCard({ question, questionNumber, total, onAnswer
             <Sparkle size={10} />
             <span
               className="text-ink text-2xl"
-              style={{ fontFamily: 'var(--font-alfa-slab)' }}
+              style={{ fontFamily: 'var(--font-display)' }}
             >
               {String(questionNumber).padStart(2, '0')}
               <span className="text-ink/40 text-lg"> / {String(total).padStart(2, '0')}</span>
@@ -69,7 +69,7 @@ export default function QuestionCard({ question, questionNumber, total, onAnswer
         <h2
           className="text-ink text-center mb-8 leading-tight"
           style={{
-            fontFamily: 'var(--font-bungee)',
+            fontFamily: 'var(--font-display-2)',
             fontSize: 'clamp(1.25rem, 4vw, 1.75rem)',
           }}
         >
@@ -91,7 +91,7 @@ export default function QuestionCard({ question, questionNumber, total, onAnswer
                 'text-sm md:text-base',
                 'hover:bg-bnb-2'
               )}
-              style={{ fontFamily: 'var(--font-dm-sans)' }}
+              style={{ fontFamily: 'var(--font-body)' }}
             >
               {answer.text}
             </motion.button>

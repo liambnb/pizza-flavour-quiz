@@ -85,11 +85,11 @@ export default function MintFlow({ flavour, rarity, onToast, onMinted, onCancel 
         style={{ boxShadow: '6px 6px 0 #1A1A1A', borderRadius: 4 }}
       >
         <div className="text-4xl">❌</div>
-        <p className="text-tomato font-black text-lg uppercase" style={{ fontFamily: 'var(--font-alfa-slab)' }}>Transaction Rejected</p>
+        <p className="text-tomato font-black text-lg uppercase" style={{ fontFamily: 'var(--font-display)' }}>Transaction Rejected</p>
         <p className="text-ink/70 text-sm">You rejected the request in your wallet.</p>
         <div className="flex gap-3 justify-center">
-          <button onClick={runMint} className="btn-retro bg-ink text-bnb px-5 py-2.5 text-sm uppercase font-black" style={{ fontFamily: 'var(--font-bungee)', borderRadius: 4 }}>Try again</button>
-          <button onClick={onCancel} className="btn-retro bg-cream text-ink px-5 py-2.5 text-sm uppercase font-bold" style={{ fontFamily: 'var(--font-bungee)', borderRadius: 4 }}>Cancel</button>
+          <button onClick={runMint} className="btn-retro bg-ink text-bnb px-5 py-2.5 text-sm uppercase font-black" style={{ fontFamily: 'var(--font-display-2)', borderRadius: 4 }}>Try again</button>
+          <button onClick={onCancel} className="btn-retro bg-cream text-ink px-5 py-2.5 text-sm uppercase font-bold" style={{ fontFamily: 'var(--font-display-2)', borderRadius: 4 }}>Cancel</button>
         </div>
       </div>
     );
@@ -193,13 +193,13 @@ export default function MintFlow({ flavour, rarity, onToast, onMinted, onCancel 
                 <span className="text-5xl">✅</span>
                 <ConfettiBurst />
               </div>
-              <p className="text-bnb uppercase text-2xl" style={{ fontFamily: 'var(--font-alfa-slab)' }}>Card Minted!</p>
+              <p className="text-bnb uppercase text-2xl" style={{ fontFamily: 'var(--font-display)' }}>Card Minted!</p>
               {tokenId && (
                 <div className="inline-flex items-center gap-2">
                   <div className="w-10 h-10 rounded-full bg-bnb border-2 border-cream flex items-center justify-center">
-                    <span className="text-ink font-black text-xs" style={{ fontFamily: 'var(--font-alfa-slab)' }}>#{tokenId % 100}</span>
+                    <span className="text-ink font-black text-xs" style={{ fontFamily: 'var(--font-display)' }}>#{tokenId % 100}</span>
                   </div>
-                  <p className="text-bnb font-black text-sm uppercase" style={{ fontFamily: 'var(--font-bungee)' }}>
+                  <p className="text-bnb font-black text-sm uppercase" style={{ fontFamily: 'var(--font-display-2)' }}>
                     Token #{tokenId} · BNB Chain
                   </p>
                 </div>
@@ -211,7 +211,7 @@ export default function MintFlow({ flavour, rarity, onToast, onMinted, onCancel 
                 href={`${BNB_CHAIN.explorer}/tx/${currentTxHash}`}
                 target="_blank" rel="noopener noreferrer"
                 className="flex items-center justify-center gap-2 mx-4 mb-4 px-4 py-2.5 text-bnb text-sm border-2 border-bnb hover:bg-bnb/10 transition-colors uppercase font-bold"
-                style={{ fontFamily: 'var(--font-bungee)', borderRadius: 4 }}
+                style={{ fontFamily: 'var(--font-display-2)', borderRadius: 4 }}
               >
                 View on BscScan ↗
               </a>
