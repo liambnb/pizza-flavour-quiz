@@ -206,51 +206,9 @@ function IntroScreen({ onStart }: { onStart: () => void }) {
           </p>
         </div>
 
-        {/* Mascot + starbursts */}
-        <div className="relative z-10 flex items-center justify-center">
-          {/* Speech bubbles */}
-          <div className="absolute -left-4 top-8 rotate-[-8deg]">
-            <Starburst size={90} rotate={-10}>
-              MAXIMIZE
-              YOUR BTC!
-            </Starburst>
-          </div>
-          <div className="absolute -right-2 top-6 rotate-[6deg]">
-            <Starburst size={84} variant="b" rotate={5}>
-              #BNB
-              PIZZADAY
-            </Starburst>
-          </div>
-
-          <PizzaMascot width={200} className="drop-shadow-lg" />
-
-          {/* Year badges */}
-          <div className="absolute -left-10 bottom-8">
-            <div
-              className="w-14 h-14 rounded-full bg-ink flex items-center justify-center"
-              style={{ border: '3px solid #1A1A1A' }}
-            >
-              <span
-                className="text-bnb font-display text-2xl leading-none"
-                style={{ fontFamily: 'var(--font-display)' }}
-              >
-                20
-              </span>
-            </div>
-          </div>
-          <div className="absolute -right-10 bottom-8">
-            <div
-              className="w-14 h-14 rounded-full bg-ink flex items-center justify-center"
-              style={{ border: '3px solid #1A1A1A' }}
-            >
-              <span
-                className="text-bnb font-display text-2xl leading-none"
-                style={{ fontFamily: 'var(--font-display)' }}
-              >
-                26
-              </span>
-            </div>
-          </div>
+        {/* Mascot */}
+        <div className="z-10 flex items-center justify-center bg-bnb">
+          <PizzaMascot width={240} className="drop-shadow-lg" />
         </div>
       </div>
 
