@@ -163,7 +163,7 @@ function IntroScreen({ onStart }: { onStart: () => void }) {
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center max-w-7xl w-full">
           {/* Left column — text + button */}
-          <div className="flex flex-col items-start text-left gap-6 order-2 lg:order-1 z-10">
+          <div className="flex flex-col items-start text-left gap-6 z-10">
             <p
               className="text-ink text-sm uppercase tracking-[0.3em]"
               style={{ fontFamily: 'var(--font-body)', fontWeight: 700 }}
@@ -208,7 +208,7 @@ function IntroScreen({ onStart }: { onStart: () => void }) {
           </div>
 
           {/* Right column — mascot */}
-          <div className="flex items-center justify-center order-1 lg:order-2 z-10">
+          <div className="flex items-center justify-center z-10">
             <PizzaMascot width={900} className="w-72 lg:w-96 xl:w-[28rem] h-auto drop-shadow-lg" />
           </div>
         </div>
